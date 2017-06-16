@@ -4,6 +4,7 @@ namespace App\Providers;
 
 
 use App\TestB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\TestB', function($app){
             return new TestB($app->make('App\TestA'));
         });
+
+
+        // Listening For Query Events
+        /*DB::listen(function($query){
+            dd($query);
+        });*/
+
     }
 
     /**
